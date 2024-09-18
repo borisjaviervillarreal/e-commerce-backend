@@ -2,6 +2,7 @@
 using ApiGateway.Domain.Ports;
 using ApiGateway.Infrastructure.Persistence.Repositories;
 using ApiGateway.Infrastructure.Persistence.UnitOfWork;
+using ApiGateway.Infrastructure.Security;
 
 namespace ApiGateway.Infrastructure.DependencyInjection
 {
@@ -11,6 +12,9 @@ namespace ApiGateway.Infrastructure.DependencyInjection
         {
             // Inyección de AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // Inyección de JwtHandler
+            services.AddScoped<JwtHandler>();
 
             // Inyección de repositorios y Unit of Work
             services.AddScoped<IUserRepository, UserRepository>();
