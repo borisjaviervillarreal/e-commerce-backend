@@ -1,11 +1,12 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using ApiGateway.Domain.Ports;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 namespace ApiGateway.Infrastructure.Security
 {
-    public class JwtHandler
+    public class JwtHandler : IJwtHandler
     {
         private readonly IConfiguration _configuration;
 

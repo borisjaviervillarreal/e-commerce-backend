@@ -3,25 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService", "ProductService\ProductService.csproj", "{93D7258A-7027-4C69-8215-0EFA53CA8F6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService", "ProductService\ProductService.csproj", "{93D7258A-7027-4C69-8215-0EFA53CA8F6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService", "OrderService\OrderService.csproj", "{7088BB16-E449-4321-AB68-9FCBDE60F968}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService", "OrderService\OrderService.csproj", "{7088BB16-E449-4321-AB68-9FCBDE60F968}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "PaymentService\PaymentService.csproj", "{6367495C-E2D0-456B-B185-8122D89A3CA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService", "PaymentService\PaymentService.csproj", "{6367495C-E2D0-456B-B185-8122D89A3CA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryService", "InventoryService\InventoryService.csproj", "{55B42EB5-899C-4017-B0CB-437419654A85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryService", "InventoryService\InventoryService.csproj", "{55B42EB5-899C-4017-B0CB-437419654A85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "NotificationService\NotificationService.csproj", "{4E585BC7-7BC2-4BE8-8C9E-C2CF1683C51C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService", "NotificationService\NotificationService.csproj", "{4E585BC7-7BC2-4BE8-8C9E-C2CF1683C51C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{B9E22B90-5B65-4D6C-8F9A-49F09DCECF66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{B9E22B90-5B65-4D6C-8F9A-49F09DCECF66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Tests", "ApiGateway.Tests\ApiGateway.Tests.csproj", "{9EAB4777-1830-41A8-815F-D3C285C72BBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{93D7258A-7027-4C69-8215-0EFA53CA8F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,5 +47,12 @@ Global
 		{B9E22B90-5B65-4D6C-8F9A-49F09DCECF66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9E22B90-5B65-4D6C-8F9A-49F09DCECF66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9E22B90-5B65-4D6C-8F9A-49F09DCECF66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EAB4777-1830-41A8-815F-D3C285C72BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EAB4777-1830-41A8-815F-D3C285C72BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EAB4777-1830-41A8-815F-D3C285C72BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EAB4777-1830-41A8-815F-D3C285C72BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

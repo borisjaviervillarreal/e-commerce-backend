@@ -13,11 +13,11 @@ namespace ApiGateway.Application.Services
     public class AuthService : IAuthService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly JwtHandler _jwtHandler;
+        private readonly IJwtHandler _jwtHandler;
         private readonly IMapper _mapper; // Inyectamos AutoMapper
 
         // Inyectamos el Unit of Work, JwtHandler y el IMapper para AutoMapper
-        public AuthService(IUnitOfWork unitOfWork, JwtHandler jwtHandler, IMapper mapper)
+        public AuthService(IUnitOfWork unitOfWork, IJwtHandler jwtHandler, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _jwtHandler = jwtHandler;

@@ -14,7 +14,7 @@ namespace ApiGateway.Infrastructure.DependencyInjection
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Inyección de JwtHandler
-            services.AddScoped<JwtHandler>();
+            services.AddScoped<IJwtHandler, JwtHandler>();
 
             // Inyección de repositorios y Unit of Work
             services.AddScoped<IUserRepository, UserRepository>();
