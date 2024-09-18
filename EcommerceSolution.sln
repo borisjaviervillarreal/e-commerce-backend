@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Tests", "ApiGateway.Tests\ApiGateway.Tests.csproj", "{9EAB4777-1830-41A8-815F-D3C285C72BBD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.Tests", "ProductService.Tests\ProductService.Tests.csproj", "{FEF86902-6DC0-4C4E-A253-B60D58A5CACE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,8 +53,15 @@ Global
 		{9EAB4777-1830-41A8-815F-D3C285C72BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EAB4777-1830-41A8-815F-D3C285C72BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EAB4777-1830-41A8-815F-D3C285C72BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEF86902-6DC0-4C4E-A253-B60D58A5CACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEF86902-6DC0-4C4E-A253-B60D58A5CACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEF86902-6DC0-4C4E-A253-B60D58A5CACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEF86902-6DC0-4C4E-A253-B60D58A5CACE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0802C7CC-480E-4356-A590-0729F26BD1D1}
 	EndGlobalSection
 EndGlobal
