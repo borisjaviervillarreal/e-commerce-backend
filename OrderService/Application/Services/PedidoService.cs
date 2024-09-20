@@ -2,6 +2,7 @@
 using OrderService.Application.DTOs;
 using OrderService.Domain.Entities;
 using OrderService.Domain.Ports;
+using OrderService.Infrastructure.Messaging;
 
 namespace OrderService.Application.Services
 {
@@ -10,12 +11,14 @@ namespace OrderService.Application.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IInventarioClient _inventarioClient;
+        private readonly RabbitMQProducer _rabbitMQProducer;
 
-        public PedidoService(IUnitOfWork unitOfWork, IMapper mapper, IInventarioClient inventarioClient)
+        public PedidoService(IUnitOfWork unitOfWork, IMapper mapper, IInventarioClient inventarioClient, RabbitMQProducer rabbitMQProducer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _inventarioClient = inventarioClient;
+            _rabbitMQProducer = rabbitMQProducer;
         }
 
         public async Task<PedidoDto> CreatePedidoAsync(PedidoDto pedidoDto)
@@ -39,6 +42,9 @@ namespace OrderService.Application.Services
                 // Guardar el pedido en la base de datos
                 await _unitOfWork.PedidoRepository.CreateAsync(pedido);
                 await _unitOfWork.CompleteAsync();
+
+                // Publicar evento en RabbitMQ
+                _rabbitMQProducer.Publish(pedido);
 
                 // Devolver el PedidoDto creado
                 return _mapper.Map<PedidoDto>(pedido);

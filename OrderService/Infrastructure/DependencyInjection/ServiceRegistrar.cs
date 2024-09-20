@@ -1,6 +1,7 @@
 ﻿using OrderService.Application.Services;
 using OrderService.Domain.Ports;
 using OrderService.Infrastructure.Clients;
+using OrderService.Infrastructure.Messaging;
 using OrderService.Infrastructure.Persistence.Repositories;
 using OrderService.Infrastructure.Persistence.UnitOfWork;
 
@@ -10,6 +11,9 @@ namespace OrderService.Infrastructure.DependencyInjection
     {
         public static IServiceCollection AddCustomServices(this IServiceCollection services)
         {
+            // Registrar RabbitMQProducer
+            services.AddSingleton<RabbitMQProducer>();
+
             // Inyección de AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
