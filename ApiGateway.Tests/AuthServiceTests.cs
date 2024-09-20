@@ -17,16 +17,21 @@ namespace ApiGateway.Tests
     public class AuthServiceTests
     {
         private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+        private readonly Mock<IUserRepository> _userRepositoryMock; // Mock explícito del repositorio de usuarios
         private readonly Mock<IJwtHandler> _jwtHandlerMock;
         private readonly Mock<IMapper> _mapperMock;
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService; // Ahora usamos la interfaz, no la clase concreta
 
         public AuthServiceTests()
         {
             // Configuramos los mocks para las dependencias de AuthService
             _unitOfWorkMock = new Mock<IUnitOfWork>();
+            _userRepositoryMock = new Mock<IUserRepository>(); // Mock explícito del repositorio de usuarios
             _jwtHandlerMock = new Mock<IJwtHandler>(); // Mock de la interfaz IJwtHandler
             _mapperMock = new Mock<IMapper>();
+
+            // Configuramos el repositorio de usuarios en el UnitOfWork
+            _unitOfWorkMock.Setup(u => u.Users).Returns(_userRepositoryMock.Object);
 
             // Creamos la instancia de AuthService con los mocks
             _authService = new AuthService(_unitOfWorkMock.Object, _jwtHandlerMock.Object, _mapperMock.Object);
@@ -40,7 +45,7 @@ namespace ApiGateway.Tests
             var user = new User { UserName = "testuser", Email = "test@example.com" };
 
             _mapperMock.Setup(m => m.Map<User>(userDto)).Returns(user);
-            _unitOfWorkMock.Setup(u => u.Users.AddUserAsync(It.IsAny<User>())).Returns(Task.CompletedTask);
+            _userRepositoryMock.Setup(r => r.AddUserAsync(It.IsAny<User>())).Returns(Task.CompletedTask); // Mock del repositorio
             _unitOfWorkMock.Setup(u => u.CompleteAsync()).ReturnsAsync(1);
 
             // Act
@@ -48,7 +53,7 @@ namespace ApiGateway.Tests
 
             // Assert
             result.Should().BeTrue();
-            _unitOfWorkMock.Verify(u => u.Users.AddUserAsync(It.IsAny<User>()), Times.Once);
+            _userRepositoryMock.Verify(r => r.AddUserAsync(It.IsAny<User>()), Times.Once); // Verificación del mock del repositorio
             _unitOfWorkMock.Verify(u => u.CompleteAsync(), Times.Once);
         }
 
@@ -69,4 +74,5 @@ namespace ApiGateway.Tests
             _jwtHandlerMock.Verify(j => j.GenerateJwtToken(user.Email), Times.Once);
         }
     }
+
 }

@@ -17,12 +17,18 @@ namespace ProductService.Tests
     {
         private readonly Mock<IUnitOfWork> _unitOfWorkMock;
         private readonly Mock<IMapper> _mapperMock;
+        private readonly Mock<IProductoRepository> _productoRepositoryMock;  // Añadir mock del repositorio
         private readonly IProductoService _productoService;
 
         public ProductoServiceTests()
         {
             _unitOfWorkMock = new Mock<IUnitOfWork>();
             _mapperMock = new Mock<IMapper>();
+            _productoRepositoryMock = new Mock<IProductoRepository>();  // Instanciar el mock del repositorio
+
+            // Configurar el UnitOfWork para devolver el mock del ProductoRepository
+            _unitOfWorkMock.Setup(u => u.ProductoRepository).Returns(_productoRepositoryMock.Object);
+
             _productoService = new ProductoService(_unitOfWorkMock.Object, _mapperMock.Object);
         }
 
