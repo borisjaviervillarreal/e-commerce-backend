@@ -46,6 +46,7 @@ builder.Services.AddAuthentication(options =>
 
 
 // Agregar Swagger para la documentación de API
+builder.Services.AddControllers(); // Asegura que los controladores se registren
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -61,8 +62,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Usar redirección HTTPS si está habilitado.
-app.UseHttpsRedirection();
 
 // Usar enrutamiento
 app.UseRouting();

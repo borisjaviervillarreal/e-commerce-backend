@@ -8,10 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add services to the container.
 builder.Services.AddCustomServices();
-
-// Agregar Swagger para la documentación de API
+builder.Services.AddControllers(); // Asegura que los controladores se registren
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -24,15 +22,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Usar redirección HTTPS si está habilitado.
 app.UseHttpsRedirection();
-
-// Usar enrutamiento
 app.UseRouting();
 
-// Aplicar autenticación y autorización antes de Ocelot
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers(); // Usa los controladores para enrutar
+});
 
 app.Run();
 

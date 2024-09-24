@@ -10,6 +10,6 @@ namespace ApiGateway.Domain.Ports
         Task<bool> RegisterUserAsync(UserDto userDto);
 
         // Método para generar un token JWT a partir de un usuario
-        string GenerateJwtToken(User user);
+        Task<string> GenerateJwtToken(UserDto userDto);
     }
 }

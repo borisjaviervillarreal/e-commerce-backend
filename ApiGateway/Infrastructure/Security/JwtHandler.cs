@@ -17,7 +17,7 @@ namespace ApiGateway.Infrastructure.Security
         }
 
         // Método para generar un JWT
-        public string GenerateJwtToken(string email)
+        public async Task<string> GenerateJwtToken(string email)
         {
             var claims = new[]
             {

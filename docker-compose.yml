@@ -1,0 +1,82 @@
+services:
+  api-gateway:
+    image: api-gateway-image
+    build:
+      context: ./ApiGateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - inventory-service
+      - notification-service
+      - order-service
+      - payment-service
+      - product-service
+    networks:
+      - ecommerce-network
+
+  inventory-service:
+    image: inventory-service-image
+    build:
+      context: ./InventoryService
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerce-network
+
+  notification-service:
+    image: notification-service-image
+    build:
+      context: ./NotificationService
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerce-network
+
+  order-service:
+    image: order-service-image
+    build:
+      context: ./OrderService
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerce-network
+
+  payment-service:
+    image: payment-service-image
+    build:
+      context: ./PaymentService
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerce-network
+
+  product-service:
+    image: product-service-image
+    build:
+      context: ./ProductService
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+    driver: bridge

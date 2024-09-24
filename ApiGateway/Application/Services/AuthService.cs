@@ -36,9 +36,9 @@ namespace ApiGateway.Application.Services
         }
 
         // Generar un JWT usando el JwtHandler
-        public string GenerateJwtToken(User user)
+        public async Task<string> GenerateJwtToken(UserDto userDto)
         {
-            return _jwtHandler.GenerateJwtToken(user.Email);
+            return await _jwtHandler.GenerateJwtToken(userDto.Email);
         }
     }
 }

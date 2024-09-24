@@ -3,6 +3,6 @@
     // Interfaz para manejar JWT
     public interface IJwtHandler
     {
-        string GenerateJwtToken(string email);
+        Task<string> GenerateJwtToken(string email);
     }
 }

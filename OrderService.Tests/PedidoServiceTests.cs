@@ -5,6 +5,7 @@ using OrderService.Application.Services;
 using OrderService.Domain.Entities;
 using OrderService.Domain.Ports;
 using OrderService.Infrastructure.Mappings;
+using OrderService.Infrastructure.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace OrderService.Tests
         private readonly Mock<IMapper> _mapperMock;
         private readonly Mock<IInventarioClient> _inventarioClientMock;
         private readonly IPedidoService _pedidoService;
+        private readonly RabbitMQProducer _rabbitMQProducer;
 
         public PedidoServiceTests()
         {
@@ -33,7 +35,7 @@ namespace OrderService.Tests
             _unitOfWorkMock.Setup(u => u.PedidoRepository).Returns(_pedidoRepositoryMock.Object);
 
             // Inicializa el PedidoService con los mocks
-            _pedidoService = new PedidoService(_unitOfWorkMock.Object, _mapperMock.Object, _inventarioClientMock.Object);
+            _pedidoService = new PedidoService(_unitOfWorkMock.Object, _mapperMock.Object, _inventarioClientMock.Object, _rabbitMQProducer);
 
         }
 
