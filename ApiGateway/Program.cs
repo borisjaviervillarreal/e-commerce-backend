@@ -1,8 +1,4 @@
-using ApiGateway.Infrastructure.Data;
-using ApiGateway.Infrastructure.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
@@ -10,19 +6,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // Add services to the container.
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
-
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
-
-// Add services to the container.
-builder.Services.AddCustomServices();
 
 // Configuración de JWT
 builder.Services.AddAuthentication(options =>
@@ -44,7 +29,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-
 // Agregar Swagger para la documentación de API
 builder.Services.AddControllers(); // Asegura que los controladores se registren
 builder.Services.AddEndpointsApiExplorer();
@@ -61,7 +45,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 // Usar enrutamiento
 app.UseRouting();

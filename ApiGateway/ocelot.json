@@ -120,16 +120,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "api-gateway",
+          "Host": "usermanagement-service",
           "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/ManejoUsuarios/{everything}",
       "UpstreamHttpMethod": [ "Post" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
       "RateLimitOptions": {
         "ClientWhitelist": [],
         "EnableRateLimiting": true,
@@ -137,10 +133,12 @@
         "PeriodTimespan": 1,
         "Limit": 10
       }
-    },
-
+    }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8080"
+    "RequestIdKey": "OcRequestId",
+    "BaseUrl": "http://localhost:8080",
+    "DownstreamScheme": "http"
   }
 }
+

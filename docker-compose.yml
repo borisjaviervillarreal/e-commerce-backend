@@ -14,6 +14,7 @@ services:
       - order-service
       - payment-service
       - product-service
+      - usermanagement-service
     networks:
       - ecommerce-network
 
@@ -72,6 +73,18 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8085:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerce-network
+
+  usermanagement-service:
+    image: usermanagement-service
+    build:
+      context: ./UserManagementService
+      dockerfile: Dockerfile
+    ports:
+      - "8086:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     networks:
