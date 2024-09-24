@@ -27,15 +27,15 @@ namespace OrderService.Application.Services
             try
             {
                 // Verificar stock para cada producto antes de crear el pedido
-                foreach (var productoDto in pedidoDto.Productos)
-                {
-                    bool stockDisponible = await _inventarioClient.VerificarStock(productoDto.ProductoId, productoDto.Cantidad);
+                //foreach (var productoDto in pedidoDto.Productos)
+                //{
+                //    bool stockDisponible = await _inventarioClient.VerificarStock(productoDto.ProductoId, productoDto.Cantidad);
 
-                    if (!stockDisponible)
-                    {
-                        throw new Exception($"No hay suficiente stock para el producto {productoDto.Nombre}");
-                    }
-                }
+                //    if (!stockDisponible)
+                //    {
+                //        throw new Exception($"No hay suficiente stock para el producto {productoDto.Nombre}");
+                //    }
+                //}
 
                 // Mapear el PedidoDto a la entidad Pedido
                 var pedido = _mapper.Map<Pedido>(pedidoDto);

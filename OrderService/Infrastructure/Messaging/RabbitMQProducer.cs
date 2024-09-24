@@ -7,18 +7,30 @@ namespace OrderService.Infrastructure.Messaging
     public class RabbitMQProducer
     {
         private readonly string _hostname;
+        private readonly int _port;
+        private readonly string _username;
+        private readonly string _password;
         private readonly string _queueName;
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
         // Constructor que inicializa la conexión a RabbitMQ
-        public RabbitMQProducer()
+        public RabbitMQProducer(IConfiguration configuration)
         {
-            _hostname = "localhost";
+            _hostname = configuration["RabbitMQ:Host"];
+            _port = int.Parse(configuration["RabbitMQ:Port"]);
+            _username = configuration["RabbitMQ:UserName"];
+            _password = configuration["RabbitMQ:Password"];
             _queueName = "orders_queue";
 
             // Configuración del cliente para conectarse a RabbitMQ
-            var factory = new ConnectionFactory() { HostName = _hostname };
+            var factory = new ConnectionFactory()
+            {
+                HostName = _hostname,
+                Port = _port,
+                UserName = _username,
+                Password = _password
+            };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
 

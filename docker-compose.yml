@@ -15,6 +15,7 @@ services:
       - payment-service
       - product-service
       - usermanagement-service
+      - rabbitmq
     networks:
       - ecommerce-network
 
@@ -51,6 +52,9 @@ services:
       - "8083:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+    - rabbitmq
     networks:
       - ecommerce-network
 
@@ -87,6 +91,15 @@ services:
       - "8086:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerce-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"   # Puerto para RabbitMQ (puerto de mensajes)
+      - "15672:15672" # Puerto para la consola de administracion de RabbitMQ
     networks:
       - ecommerce-network
 

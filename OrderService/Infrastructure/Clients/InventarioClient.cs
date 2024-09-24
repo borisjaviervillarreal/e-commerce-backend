@@ -16,7 +16,9 @@ namespace OrderService.Infrastructure.Clients
         public async Task<bool> VerificarStock(int productoId, int cantidad)
         {
             // Llamada a la API de Inventario para verificar el stock
-            var response = await _httpClient.GetAsync($"{_inventarioApiUrl}/inventario/{productoId}/verificar-stock?cantidad={cantidad}");
+
+            var response = await _httpClient.GetAsync($"{_inventarioApiUrl}/{productoId}/verificar-stock?cantidad={cantidad}");
+
 
             if (response.IsSuccessStatusCode)
             {
